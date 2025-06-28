@@ -42,8 +42,9 @@ public class SocialMediaController {
 
     @PostMapping("/messages") 
     public ResponseEntity<?> createMessage(@RequestBody Message message) {
-        return ResponseEntity.ok().build();
-    }w
+        Message createMessage = messageService.createMessage(message);
+        return ResponseEntity.ok(createMessage);
+    }
 
     @GetMapping("/messages")
     public ResponseEntity<?> getAllMessages() {
