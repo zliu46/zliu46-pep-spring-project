@@ -17,4 +17,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleInvalidAccount(InvalidAccountDataException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+
+    @ExceptionHandler(AuthenticationFailedException.class)
+    public ResponseEntity<String> handleAuthFailed(AuthenticationFailedException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    }
 }
