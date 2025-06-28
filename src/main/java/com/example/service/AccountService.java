@@ -29,6 +29,17 @@ public class AccountService {
     }
 
     public Account login(Account account) {
-        return null;
+        if (account.getUsername() == null || account.getUsername().trim().isEmpty() || 
+            account.getPassword() == null || account.getPassword().trim().isEmpty()) {
+                throw new InvalidAccountDataException("Username and password cannot be blank");
+        }
+
+        Account currentAccount = accountRepository.findByUsername(account.getUsername());
+
+        if (currentAccount == null || !currentAccount.getPassword().equals(account.getPassword())) {
+            throw new AuthenticationFailedException("Invalid username or password");
+        }
+
+        return currentAccount;
     }
 }
