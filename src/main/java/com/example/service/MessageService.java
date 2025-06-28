@@ -28,8 +28,6 @@ public class MessageService {
         if (message.getPostedBy() == null || !accountRepository.existsById(message.getPostedBy())) {
             throw new InvalidMessageException("PostedBy must refer to an existing user");
         }
-
-        message.setTimePostedEpoch(System.currentTimeMillis());
         
         return messageRepository.save(message);
     }
