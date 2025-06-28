@@ -36,13 +36,14 @@ public class SocialMediaController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Account account) {
-        return ResponseEntity.ok().build();
+        Account loggedAccount = accountService.login(account);
+        return ResponseEntity.ok(loggedAccount);
     }
 
     @PostMapping("/messages") 
     public ResponseEntity<?> createMessage(@RequestBody Message message) {
         return ResponseEntity.ok().build();
-    }
+    }w
 
     @GetMapping("/messages")
     public ResponseEntity<?> getAllMessages() {
