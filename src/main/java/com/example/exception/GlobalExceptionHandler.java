@@ -22,4 +22,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleAuthFailed(AuthenticationFailedException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
+    @ExceptionHandler(InvalidMessageException.class) 
+    public ResponseEntity<String> handleInvalidMessage(InvalidMessageException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
 }

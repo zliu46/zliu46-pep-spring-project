@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.entity.Message;
+import com.example.exception.InvalidMessageException;
 import com.example.repository.AccountRepository;
 import com.example.repository.MessageRepository;
 
