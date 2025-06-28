@@ -12,6 +12,9 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     public Account register(Account account) {
+        if (account.getUsername() == null || account.getUsername().trim().isEmpty()) {
+            throw new InvalidAccountDataException("Username is invalid");
+        } 
         return null;
     }
 
