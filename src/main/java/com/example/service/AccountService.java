@@ -25,7 +25,7 @@ public class AccountService {
         if (accountRepository.findByUsername(account.getUsername()) != null) {
             throw new UsernameAlreadyExistsException("Username " + account.getUsername() + " is already taken");
         }
-        return null;
+        return accountRepository.save(account);
     }
 
     public Account login(Account account) {
