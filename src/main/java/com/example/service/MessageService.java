@@ -20,7 +20,18 @@ public class MessageService {
         if (message.getMessageText() == null || message.getMessageText().trim().isEmpty()) {
             throw new InvalidMessageException("Message text cannot be blank");
         }
-        return null;
+
+        if (message.getMessageText().length() > 255) {
+            throw new InvalidMessageException("Message text cannot exceed 255 characters");
+        }
+
+        if (message.getPostedBy() == null || !accountRepository.existsById(message.getPostedBy())) {
+            throw new InvalidMessageException("PostedBy must refer to an existing user");
+        }
+
+        message.setTimePostedEpoch(System.currentTimeMillis());
+        
+        return messageRepository.save(message);
     }
 
     public List<Message> getAllMessages() {
