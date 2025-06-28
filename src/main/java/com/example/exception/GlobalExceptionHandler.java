@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
     @ExceptionHandler(UsernameAlreadyExistsException.class)
     public ResponseEntity<String> handleUsernameExists(UsernameAlreadyExistsException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
     @ExceptionHandler(InvalidAccountDataException.class)
