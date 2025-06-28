@@ -53,12 +53,21 @@ public class MessageService {
     public int updateMessage(Integer id, String newText) {
         Message currentMessage = getMessageById(id);
 
-        if (currentMessage != null) {
-            currentMessage.setMessageText(newText);
-            return 1;
+        if (currentMessage == null) {
+            throw new InvalidMessageException("Message with id: " + id + " not found");
         }
 
-        return 0;
+        if (newText == null || newText.trim().isEmpty()) {
+            throw new InvalidMessageException("Updated message text cannot be blank");
+        }
+        if (newText.length() > 255) {
+            throw new InvalidMessageException("Updated message text cannot exceed 255 characters");
+        }
+
+        currentMessage.setMessageText(newText);
+        messageRepository.save(currentMessage);
+
+        return 1;
     }
 
 }
