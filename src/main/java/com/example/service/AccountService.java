@@ -3,6 +3,7 @@ package com.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.entity.Account;
+import com.example.exception.AuthenticationFailedException;
 import com.example.exception.InvalidAccountDataException;
 import com.example.exception.UsernameAlreadyExistsException;
 import com.example.repository.AccountRepository;
