@@ -16,6 +16,9 @@ public class MessageService {
     private AccountRepository accountRepository;
 
     public Message createMessage(Message message) {
+        if (message.getMessageText() == null || message.getMessageText().trim().isEmpty()) {
+            throw new InvalidMessageException("Message text cannot be blank");
+        }
         return null;
     }
 
