@@ -75,7 +75,8 @@ public class SocialMediaController {
 
     @PatchMapping("/messages/{messageId}")
     public ResponseEntity<?> updateMessage(@PathVariable Integer messageId, @RequestBody Message newText) {
-        return ResponseEntity.ok().build();
+        int updatedRows = messageService.updateMessage(messageId, newText.getMessageText());
+        return ResponseEntity.ok(updatedRows);
     }
 
     @GetMapping("/accounts/{accountId}/messages") 
