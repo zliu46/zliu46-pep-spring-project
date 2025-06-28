@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,7 +50,8 @@ public class SocialMediaController {
 
     @GetMapping("/messages")
     public ResponseEntity<?> getAllMessages() {
-        return ResponseEntity.ok().build();
+        List<Message> messages = messageService.getAllMessages();
+        return ResponseEntity.ok(messages);
     }
 
     @GetMapping("/messages/{messageId}")
